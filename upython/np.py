@@ -63,7 +63,7 @@ def default_mode(update_interval_ms):
                 else:
                     if laston:
                         colormode = 0 if colormode==2 else colormode+1
-                    color = (20, 20, 20)
+                    color = (0, 0, 0) # (5, 5, 5)
                     laston = False
                 for i in range(num):
                     np[i] = color
