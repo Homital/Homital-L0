@@ -55,7 +55,7 @@ def getStatus():
         if roomId == '-1':
             machine.reset()
         url = SERVER_ADDR + '/device/status' + '?uid=%s&devicename=%s'%(roomId,deviceName)
-        print(url)
+        # print(url)
         res = requests.get(url,headers={'Authorization':'Bearer ' + TOKEN})
         if res.status_code != 200:
             print('Err: status %d, msg %s' % (res.status_code, str(res.json())))

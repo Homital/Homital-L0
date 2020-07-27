@@ -49,6 +49,7 @@ def connecting():
 def default_mode(update_interval_ms):
     print("Running np.default_mode(%d)" % (update_interval_ms,))
     colormode = 0
+    laston = False
     while True:
         try:
             st = homital.getStatus()
@@ -57,8 +58,13 @@ def default_mode(update_interval_ms):
                 st = st['status']
                 power = st['power']
                 color = (0,255,0) if colormode==0 else (0,0,255) if colormode==1 else (0,255,255) if colormode==2 else (50,50,50)
-                color = color if power else (20, 20, 20)
-                colormode = 0 if colormode==2 else colormode+1
+                if power:
+                    laston = True
+                else:
+                    if laston:
+                        colormode = 0 if colormode==2 else colormode+1
+                    color = (20, 20, 20)
+                    laston = False
                 for i in range(num):
                     np[i] = color
                 np.write()
